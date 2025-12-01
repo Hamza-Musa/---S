@@ -12,7 +12,7 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: #1a1a1a; /* Placeholder until images added */
+  background: url('../assets/images/paris-apartment.jpg') center/cover no-repeat;
 }
 
 /* Clickable Items */
@@ -66,4 +66,13 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+
+
+.item-img {
+  width: 80px;
+  height: auto;
+  pointer-events: none; /* image doesn't block the click */
+  user-select: none;
 }

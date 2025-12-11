@@ -1,13 +1,16 @@
+/* ========= GLOBAL ========= */
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  background: #0f0f0f;
-  color: #fff;
+  background: #f3eee8;      /* light beige */
+  color: #222;              /* dark text by default */
   overflow: hidden;
 }
 
-/* Paris Apartment Container */
+/* ========= ROOM ========= */
+
 .room-container {
   position: relative;
   width: 100vw;
@@ -15,64 +18,93 @@ body {
   background: url('../assets/images/paris-apartment.jpg') center/cover no-repeat;
 }
 
-/* Clickable Items */
+/* ========= CLICKABLE ITEMS ========= */
+
 .clickable-item {
   position: absolute;
   cursor: pointer;
-  padding: 6px 8px;
-  background: rgba(0,0,0,0.4);
-  border-radius: 6px;
-  font-size: 12px;
-  transition: 0.2s ease;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.95);  /* almost solid white */
+  border-radius: 10px;
+  font-size: 13px;
+  color: #111;                            /* dark text, max contrast */
+  border: 1px solid rgba(0, 0, 0, 0.25);  /* subtle outline so they stand out */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .clickable-item:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
-/* Popup */
+/* Images inside items (bag, dogs) */
+/* Universal default image size */
+.item-img {
+  width: 90px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Control sizes per object type */
+.size-xs { width: 55px; }
+.size-sm { width: 75px; }
+.size-md { width: 95px; }
+.size-lg { width: 130px; }
+.size-xl { width: 160px; }
+
+
+
+
+/* ========= POPUP OVERLAY ========= */
+
 #popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.12);   /* VERY light dim, no fog */
+  /* no blur for now to keep things clear:
+     backdrop-filter: none; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* ========= POPUP CARD ========= */
+
 #popup-content {
-  background: #121212;
-  padding: 20px;
-  border-radius: 12px;
-  width: 280px;
+  background: #ffffff;               /* white card */
+  color: #111;                       /* dark text */
+  padding: 22px 20px;
+  border-radius: 14px;
+  width: 320px;
   text-align: center;
   line-height: 1.5;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
 }
+
+/* ========= BUTTONS ========= */
 
 button {
   margin: 6px 0;
   width: 100%;
   padding: 10px;
-  border: none;
-  background: #ffffff10;
-  color: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: #f5f2ef;
+  color: #222;
   border-radius: 8px;
   cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
 }
 
 button:hover {
-  background: #ffffff20;
+  background: #e8e1da;
 }
+
+/* ========= UTILS ========= */
 
 .hidden {
   display: none;
-}
-
-
-
-.item-img {
-  width: 80px;
-  height: auto;
-  pointer-events: none; /* image doesn't block the click */
-  user-select: none;
 }

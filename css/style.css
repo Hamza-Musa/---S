@@ -4,9 +4,41 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  background: #f3eee8;      /* light beige */
-  color: #222;              /* dark text by default */
+  background: #f3eee8;
+  color: #222;
   overflow: hidden;
+}
+
+/* ========= START SCREEN ========= */
+
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.start-card {
+  background: #ffffff;
+  color: #111;
+  padding: 22px 20px;
+  border-radius: 14px;
+  width: 340px;
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+
+.start-card h1 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.start-card p {
+  margin: 0 0 14px;
 }
 
 /* ========= ROOM ========= */
@@ -16,6 +48,15 @@ body {
   width: 100vw;
   height: 100vh;
   background: url('../assets/images/paris-apartment.jpg') center/cover no-repeat;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.loaded .room-container {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ========= CLICKABLE ITEMS ========= */
@@ -24,64 +65,87 @@ body {
   position: absolute;
   cursor: pointer;
   padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.95);  /* almost solid white */
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
   font-size: 13px;
-  color: #111;                            /* dark text, max contrast */
-  border: 1px solid rgba(0, 0, 0, 0.25);  /* subtle outline so they stand out */
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .clickable-item:hover {
   background: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* Images inside items (bag, dogs) */
-/* Universal default image size */
+/* items without the white card */
+.no-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* ========= WINDOW HINT (subtle glow) ========= */
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 rgba(255,255,255,0); }
+  50% { box-shadow: 0 0 22px rgba(255,255,255,0.45); }
+  100% { box-shadow: 0 0 0 rgba(255,255,255,0); }
+}
+
+#window {
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+/* ========= IMAGES ========= */
+
 .item-img {
-  width: 90px;
+  width: 90px;       /* tweak this one number if you want */
   height: auto;
   pointer-events: none;
   user-select: none;
+  display: block;
 }
 
-/* Control sizes per object type */
-.size-xs { width: 55px; }
-.size-sm { width: 75px; }
-.size-md { width: 95px; }
-.size-lg { width: 130px; }
-.size-xl { width: 160px; }
-
-
-
-
-/* ========= POPUP OVERLAY ========= */
+/* ========= POPUP ========= */
 
 #popup {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.12);   /* VERY light dim, no fog */
-  /* no blur for now to keep things clear:
-     backdrop-filter: none; */
-  display: flex;
+  background: rgba(0, 0, 0, 0.12);
+  display: none; /* IMPORTANT: hidden by default so it doesn't block clicks */
   justify-content: center;
   align-items: center;
+  z-index: 40;
 }
 
-/* ========= POPUP CARD ========= */
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)  scale(1); }
+}
 
 #popup-content {
-  background: #ffffff;               /* white card */
-  color: #111;                       /* dark text */
+  background: #ffffff;
+  color: #111;
   padding: 22px 20px;
   border-radius: 14px;
-  width: 320px;
+  width: 340px;
   text-align: center;
   line-height: 1.5;
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  animation: popupIn 0.22s ease;
+}
+
+#popup-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+#popup-content p {
+  margin: 0 0 12px;
 }
 
 /* ========= BUTTONS ========= */
@@ -103,8 +167,29 @@ button:hover {
   background: #e8e1da;
 }
 
-/* ========= UTILS ========= */
+/* ========= QUIZ REVEAL CARD ========= */
 
-.hidden {
-  display: none;
+.result-card {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  padding: 14px;
+  background: #fbf8f4;
+  text-align: left;
+}
+
+.result-kicker {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0 0 6px;
+}
+
+.result-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.result-card p {
+  margin: 0 0 10px;
 }

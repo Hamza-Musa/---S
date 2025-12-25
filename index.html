@@ -9,60 +9,65 @@
 
 <body>
 
+  <!-- Start Screen -->
+  <div id="startScreen" class="start-screen">
+    <div class="start-card">
+      <h1>Happy New Year, Sam ✨</h1>
+      <p>A tiny Paris apartment full of little things you love.</p>
+      <button id="startBtn">Enter</button>
+    </div>
+  </div>
+
+  <!-- Room -->
   <div class="room-container">
 
-    <!-- Window: centre-ish, starts 2026 quiz -->
+    <!-- Window: starts quiz -->
     <div id="window" class="clickable-item" style="top: 28%; left: 50%;">
       <span>Window</span>
     </div>
 
-    <!-- Chanel-style Bag: near bottom-left -->
+    <!-- Bag -->
     <div id="bag" class="clickable-item no-card" style="top: 72%; left: 22%;">
-      <img src="assets/images/bag.png"
-           class="item-img size-md"
-           alt="Designer bag" />
+      <img src="assets/images/bag.png" class="item-img" alt="Designer bag" />
     </div>
 
-    <!-- Church (Église de la Madeleine): left wall, mid-height -->
+    <!-- Church -->
     <div id="church" class="clickable-item" style="top: 38%; left: 12%;">
-      <img src="assets/images/church.png"
-           class="item-img size-sm"
-           alt="Church where we met" />
+      <img src="assets/images/church.png" class="item-img" alt="Church where we met" />
     </div>
 
-    <!-- Dogs: bottom-right -->
+    <!-- Dogs -->
     <div id="dogs" class="clickable-item no-card" style="top: 78%; left: 65%;">
-      <img src="assets/images/dogs.png"
-           class="item-img size-lg"
-           alt="Lyka and Simba" />
+      <img src="assets/images/dogs.png" class="item-img" alt="Lyka and Simba" />
     </div>
 
-    <!-- Aquarium: right side, mid-height -->
+    <!-- Aquarium -->
     <div id="aquarium" class="clickable-item" style="top: 55%; left: 78%;">
-      <img src="assets/images/aquarium.png"
-           class="item-img size-md"
-           alt="Aquarium" />
+      <img src="assets/images/aquarium.png" class="item-img" alt="Aquarium" />
     </div>
 
-    <!-- YJHD Poster: upper-right wall -->
+    <!-- YJHD Poster -->
     <div id="yjhd" class="clickable-item" style="top: 22%; left: 75%;">
-      <img src="assets/images/yjhd.png"
-           class="item-img size-xl"
-           alt="Yeh Jawaani Hai Deewani poster" />
+      <img src="assets/images/yjhd.png" class="item-img" alt="Yeh Jawaani Hai Deewani poster" />
     </div>
 
-    <!-- Couch: centre-bottom -->
+    <!-- Montale Perfume -->
+    <div id="montale" class="clickable-item no-card" style="top: 60%; left: 35%;">
+      <img src="assets/images/montale.png" class="item-img" alt="Montale perfume" />
+    </div>
+
+    <!-- Couch -->
     <div id="couch" class="clickable-item" style="top: 68%; left: 48%;">
       <span>Couch Moment</span>
     </div>
 
   </div>
 
-  <!-- Popup for memories, quiz & results -->
-  <div id="popup" class="hidden">
+  <!-- Popup -->
+  <div id="popup">
     <div id="popup-content"></div>
   </div>
 
-  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-# Sammonah New Year Experience
+# Sammona New Year Experience
 
 A personal mini web-based 3D world built using **A-Frame**, featuring:
 - ❄️ A winter scene
